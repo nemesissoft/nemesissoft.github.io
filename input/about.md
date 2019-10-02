@@ -1,3 +1,3 @@
-Title: About Me
+Title: About Us
 ---
-I'm awesome!
+We're awesome!

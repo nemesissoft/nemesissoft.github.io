@@ -23,7 +23,7 @@ build_script:
   - dotnet ..\Wyam\Wyam.dll --output ..\output
 
 on_success:
-  # Switch branches to gh-pages, clean the folder, copy everything in from the Wyam output, and commit/push
+  # Switch branches to master, clean the folder, copy everything in from the Wyam output, and commit/push
   # See http://www.appveyor.com/docs/how-to/git-push for more info
   - git config --global credential.helper store
   # EDIT your Git email and name
