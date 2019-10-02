@@ -1,6 +1,6 @@
 Title: Setting up a Personal or Organization Blog on GitHub Pages with Wyam
 Lead: How this blog was set up with Wyam, GitHub pages and AppVeyor
-Published: 2/10/2019
+Published: 2-10-2019
 Tags: 
   - Wyam
   - GitHub Pages
