@@ -30,7 +30,7 @@
 
         <meta property="og:title" content="Nemesis blog - Setting up a Personal or Organization Blog on GitHub Pages with Wyam" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="http://nemesissoft.github.io/posts/stting-up-a-personal-github-blog-with-wyam" />
+        <meta property="og:url" content="https://nemesissoft.github.io/posts/stting-up-a-personal-github-blog-with-wyam" />
         <!-- TODO: More social graph meta tags -->
 
         <script src="/assets/js/jquery.min.js"></script>
@@ -186,7 +186,29 @@ on_success:
 <p>Create your build pipeline on <a href="https://AppVeyor.com">AppVeyor.com</a> for free and watch your blog appear on <a href="http://nemesissoft.github.io">{user or organization name}.github.io</a>.</p>
 
 
-
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'nemesissoft'; // required: replace example with your forum shortname
+    var disqus_identifier = 'stting-up-a-personal-github-blog-with-wyam';
+    var disqus_title = 'Setting up a Personal or Organization Blog on GitHub Pages with Wyam';
+    var disqus_url = 'https://nemesissoft.github.io/posts/stting-up-a-personal-github-blog-with-wyam';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
                                 </div>
                         </div>
                 </div>
