@@ -89,4 +89,4 @@ on_success:
   - git push
 ```
 
-Create your build pipeline on AppVeyor.com for free and watch your blog appear on {user or organisation name}.github.io.
+Create your build pipeline on [AppVeyor.com](https://AppVeyor.com) for free and watch your blog appear on [\{user or organization name\}.github.io](http://nemesissoft.github.io).
