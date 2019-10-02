@@ -3,6 +3,7 @@
 
 // Customize your settings and add new ones here
 Settings[Keys.Host] = "nemesissoft.github.io";
+Settings[Keys.LinksUseHttps] = true;
 Settings[BlogKeys.Title] = "Nemesis blog";
 Settings[BlogKeys.Description] = "A deeper dive into .NET Core";
 
