@@ -66,3 +66,6 @@ Due to this phenomenon, consuming records is quite straightforward - you are usi
     <LangVersion>9.0</LangVersion>
 </PropertyGroup>
 ``` 
+
+## Sources 
+- [Records producer/consumer](https://gist.github.com/MichalBrylka/417672620d1305de4a6db68698302544)
