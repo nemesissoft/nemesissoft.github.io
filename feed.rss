@@ -4,9 +4,68 @@
 		<title>Nemesis blog</title>
 		<link>https://nemesissoft.github.io/</link>
 		<description>A deeper dive into .NET Core</description>
-		<copyright>2019</copyright>
-		<pubDate>Wed, 09 Oct 2019 11:14:14 GMT</pubDate>
-		<lastBuildDate>Wed, 09 Oct 2019 11:14:14 GMT</lastBuildDate>
+		<copyright>2020</copyright>
+		<pubDate>Fri, 06 Nov 2020 21:26:09 GMT</pubDate>
+		<lastBuildDate>Fri, 06 Nov 2020 21:26:09 GMT</lastBuildDate>
+		<item>
+			<title>Using records in "legacy" .NET frameworks</title>
+			<link>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</link>
+			<description>&lt;p&gt;Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records.
+A lot was written about this feature, starting with &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;</description>
+			<guid>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</guid>
+			<pubDate>Thu, 11 Jun 2020 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records.
+A lot was written about this feature, starting with &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What was not clear however, was whether one can use records in older frameworks - like .NET 4.8.&lt;/p&gt;
+&lt;h2 id="anatomy-of-init-only-properties"&gt;Anatomy of init-only properties&lt;/h2&gt;
+&lt;p&gt;Let's settle our attention on the following example&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;record Vertebrate(string Name)
+{
+    public Vertebrate() : this(&amp;quot;&amp;quot;) { }
+}
+
+public enum Habitat { Terrestrial, Aquatic, Amphibian }
+
+public record Reptile(Habitat Habitat) : Vertebrate { }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Upon compilation under net5.0 framework moniker, everything works as expected. Change it to however to net48 and you will not be able to compile it. This compiler feature fortunatelly works like opt-in member resolution (similarly to string interpolation). What compiler needs in this case is an accessible class of the following structure&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;//TODO: use appropriate compiler directives for legacy targets - it's not needed in net5.0
+#if NETSTANDARD2_0
+namespace System.Runtime.CompilerServices
+{
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    internal static class IsExternalInit { }
+}
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="check-if-property-is-init-only"&gt;Check if property is init-only&lt;/h3&gt;
+&lt;p&gt;After quick research one can spot that init-only setter has special structure:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;.set instance void modreq([System.Runtime]System.Runtime.CompilerServices.IsExternalInit)  DotnetCommunityDemoNet5.Records/Vertebrate::set_Name(string)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To determine that setter is init-only one just needs to query the existence of required modifier initialized with aforementioned IsExternalInit type - this code helper should do the trick:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public static class RecordsHelper
+{
+    public static bool IsInitOnly(this PropertyInfo property) =&amp;gt;
+        property.CanWrite &amp;amp;&amp;amp; property.SetMethod is var setter
+            &amp;amp;&amp;amp; setter.ReturnParameter.GetRequiredCustomModifiers() is var reqMods &amp;amp;&amp;amp; reqMods.Length &amp;gt; 0
+            &amp;amp;&amp;amp; Array.IndexOf(reqMods, typeof(System.Runtime.CompilerServices.IsExternalInit)) &amp;gt; -1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="consuming-records-in-older-frameworks"&gt;Consuming records in older frameworks&lt;/h2&gt;
+&lt;p&gt;Fortunatelly, records are not any special types - they are, per se, not specially recognized by CLI/CLR. They are just spcially designed classes with:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;init only properties (default behaviour for positional records)&lt;/li&gt;
+&lt;li&gt;free structural equality, IEquatable&amp;lt;&amp;gt; implementation, equality operators&lt;/li&gt;
+&lt;li&gt;positional deconstruction&lt;/li&gt;
+&lt;li&gt;printing/formatting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Due to this phenomenon, consuming records is quite straightforward - you are using them as normal classes. If you'd like to use &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/#with-expressions"&gt;&lt;strong&gt;with&lt;/strong&gt;&lt;/a&gt; keyword then you need to use C# 9.0+ for instance by specifying that in *.csproj file:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;PropertyGroup&amp;gt;
+    &amp;lt;LangVersion&amp;gt;9.0&amp;lt;/LangVersion&amp;gt;
+&amp;lt;/PropertyGroup&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Setting up a Personal or Organization Blog on GitHub Pages with Wyam</title>
 			<link>https://nemesissoft.github.io/posts/stting-up-a-personal-github-blog-with-wyam</link>
