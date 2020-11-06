@@ -26,7 +26,7 @@ public record Reptile(Habitat Habitat) : Vertebrate { }
 
 Upon compilation under net5.0 framework moniker, everything works as expected. Change it to however to net48 and you will not be able to compile it. This compiler feature fortunatelly works like opt-in member resolution (similarly to string interpolation). What compiler needs in this case is an accessible class of the following structure  
 ```csharp
-//TODO: use appropriate compiler directives
+//TODO: use appropriate compiler directives for legacy targets - it's not needed in net5.0
 #if NETSTANDARD2_0
 namespace System.Runtime.CompilerServices
 {
@@ -42,7 +42,7 @@ After quick research one can spot that init-only setter has special structure:
 .set instance void modreq([System.Runtime]System.Runtime.CompilerServices.IsExternalInit)  DotnetCommunityDemoNet5.Records/Vertebrate::set_Name(string)
 ```
 
-To determine that setter is init-only one just needs to query the existence of required modifier initializer with aforementioned IsExternalInit type - this code helper should do the trick:
+To determine that setter is init-only one just needs to query the existence of required modifier initialized with aforementioned IsExternalInit type - this code helper should do the trick:
 ```csharp
 public static class RecordsHelper
 {
@@ -55,12 +55,12 @@ public static class RecordsHelper
 
 ## Consuming records in older frameworks 
 Fortunatelly, records are not any special types - they are, per se, not specially recognized by CLI/CLR. They are just spcially designed classes with: 
-- init only propoerties (default behaviour for positional records)
+- init only properties (default behaviour for positional records)
 - free structural equality, IEquatable<> implementation, equality operators
 - positional deconstruction
 - printing/formatting
 
-Due to this phenomenon, consuming records with quite straightforward - you are using them as normal classes. If you'd like to use __with__ keyword then you need to use C# 9.0+ for instance by specifying that in *.csproj file:
+Due to this phenomenon, consuming records is quite straightforward - you are using them as normal classes. If you'd like to use [__with__](https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/#with-expressions) keyword then you need to use C# 9.0+ for instance by specifying that in *.csproj file:
 ```xml
 <PropertyGroup>
     <LangVersion>9.0</LangVersion>
