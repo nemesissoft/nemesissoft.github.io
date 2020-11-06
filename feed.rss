@@ -5,15 +5,15 @@
 		<link>https://nemesissoft.github.io/</link>
 		<description>A deeper dive into .NET Core</description>
 		<copyright>2020</copyright>
-		<pubDate>Fri, 06 Nov 2020 21:26:09 GMT</pubDate>
-		<lastBuildDate>Fri, 06 Nov 2020 21:26:09 GMT</lastBuildDate>
+		<pubDate>Fri, 06 Nov 2020 21:37:01 GMT</pubDate>
+		<lastBuildDate>Fri, 06 Nov 2020 21:37:01 GMT</lastBuildDate>
 		<item>
 			<title>Using records in "legacy" .NET frameworks</title>
 			<link>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</link>
 			<description>&lt;p&gt;Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records.
 A lot was written about this feature, starting with &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;</description>
 			<guid>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</guid>
-			<pubDate>Thu, 11 Jun 2020 00:00:00 GMT</pubDate>
+			<pubDate>Fri, 06 Nov 2020 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records.
 A lot was written about this feature, starting with &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;What was not clear however, was whether one can use records in older frameworks - like .NET 4.8.&lt;/p&gt;

@@ -4,13 +4,13 @@
 	<title>Nemesis blog</title>
 	<link rel="self" href="https://nemesissoft.github.io/" />
 	<rights>2020</rights>
-	<updated>2020-11-06T21:26:09Z</updated>
+	<updated>2020-11-06T21:37:01Z</updated>
 	<subtitle>A deeper dive into .NET Core</subtitle>
 	<entry>
 		<id>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</id>
 		<title>Using records in "legacy" .NET frameworks</title>
 		<link href="https://nemesissoft.github.io/posts/using-records-in-older-frameworks" />
-		<updated>2020-06-11T00:00:00Z</updated>
+		<updated>2020-11-06T00:00:00Z</updated>
 		<content>&lt;p&gt;Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records.
 A lot was written about this feature, starting with &lt;a href="https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/"&gt;MSDN&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;What was not clear however, was whether one can use records in older frameworks - like .NET 4.8.&lt;/p&gt;
