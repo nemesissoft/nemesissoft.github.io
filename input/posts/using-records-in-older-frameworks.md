@@ -1,6 +1,6 @@
 Title: Using records in "legacy" .NET frameworks
 Lead: How C# 9.0 records can be used in older frameworks and what is the anatomy of init-only properties
-Published: 6-11-2020
+Published: 11-06-2020
 Tags: 
   - CSharp
   - Records
