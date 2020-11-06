@@ -5,8 +5,8 @@
 		<link>https://nemesissoft.github.io/</link>
 		<description>A deeper dive into .NET Core</description>
 		<copyright>2020</copyright>
-		<pubDate>Fri, 06 Nov 2020 21:37:01 GMT</pubDate>
-		<lastBuildDate>Fri, 06 Nov 2020 21:37:01 GMT</lastBuildDate>
+		<pubDate>Fri, 06 Nov 2020 21:45:35 GMT</pubDate>
+		<lastBuildDate>Fri, 06 Nov 2020 21:45:35 GMT</lastBuildDate>
 		<item>
 			<title>Using records in "legacy" .NET frameworks</title>
 			<link>https://nemesissoft.github.io/posts/using-records-in-older-frameworks</link>
@@ -64,6 +64,10 @@ namespace System.Runtime.CompilerServices
     &amp;lt;LangVersion&amp;gt;9.0&amp;lt;/LangVersion&amp;gt;
 &amp;lt;/PropertyGroup&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="sources"&gt;Sources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/MichalBrylka/417672620d1305de4a6db68698302544"&gt;Records producer/consumer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </content:encoded>
 		</item>
 		<item>
