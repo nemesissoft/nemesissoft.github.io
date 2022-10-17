@@ -43,7 +43,8 @@ namespace System.Runtime.CompilerServices
 ### Check if property is init-only
 After quick research one can spot that init-only setter has special structure:
 ```
-.set instance void modreq([System.Runtime]System.Runtime.CompilerServices.IsExternalInit)  DotnetCommunityDemoNet5.Records/Vertebrate::set_Name(string)
+.set instance void modreq([System.Runtime]System.Runtime.CompilerServices.IsExternalInit)
+  DotnetCommunityDemoNet5.Records/Vertebrate::set_Name(string)
 ```
 
 To determine that setter is init-only one just needs to query the existence of required modifier initialized with aforementioned IsExternalInit type - this code helper should do the trick:
