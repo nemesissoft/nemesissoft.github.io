@@ -1,5 +1,5 @@
 baseURL = 'https://nemesissoft.github.io/'
-languageCode = 'pl-pl'
+languageCode = 'pl'
 title = 'Nemesis blog'
 
 theme = "whiteplain"
