@@ -3,10 +3,11 @@ title: Using Records in legacy .NET Frameworks
 summary: How C# 9.0 records can be used in older frameworks and what is the anatomy of init-only properties
 date: 2020-06-11T00:18:08+02:00
 tags:
-  - "CSharp"
-  - "Records"
-  - "legacy"
+  - csharp
+  - records
+  - legacy
 draft: false
+author: michalbrylka
 ---
 
 Recenly we've been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it's hottest feature - C# 9.0 records. 
@@ -53,7 +54,8 @@ public static class RecordsHelper
 {
     public static bool IsInitOnly(this PropertyInfo property) =>
         property.CanWrite && property.SetMethod is var setter
-            && setter.ReturnParameter.GetRequiredCustomModifiers() is var reqMods && reqMods.Length > 0
+            && setter.ReturnParameter.GetRequiredCustomModifiers() is var reqMods 
+            && reqMods.Length > 0
             && Array.IndexOf(reqMods, typeof(System.Runtime.CompilerServices.IsExternalInit)) > -1;
 }
 ```

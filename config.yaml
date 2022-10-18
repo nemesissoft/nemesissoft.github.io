@@ -1,0 +1,46 @@
+baseURL: https://nemesissoft.github.io/
+languageCode: pl
+title: Nemesis blog
+copyright: '&copy; Copyright 2019-2022 Michał Bryłka and Leszek Kowalski'
+
+theme: whiteplain
+
+disqusShortname: nemesissoft
+
+googleAnalytics: G-TFL0Z5DXWF
+
+params:
+  author:
+    name: Michał Bryłka
+    gravatar: d54f03f2e4c8624d61f9fef58bd338da
+    twitter: michal_brylka
+    linkedin: michalbrylka
+    github: MichalBrylka 
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+  author: authors
+menu:
+  main:
+    - name: Categories
+      identifier: categories
+      url: /categories/
+      weight: 1
+    - name: Tags
+      identifier: tags
+      url: /tags/
+      weight: 2
+    - name: Authors
+      identifier: authors
+      url: /authors/
+      weight: 3
+    - name: About
+      identifier: about
+      url: /about/
+      weight: 4
+  footer:
+    - name: About
+      weight: 1
+      identifier: about
+      url: /about/
