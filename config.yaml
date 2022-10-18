@@ -16,6 +16,7 @@ params:
     twitter: michal_brylka
     linkedin: michalbrylka
     github: MichalBrylka 
+  authorbox: true
 taxonomies:
   category: categories
   tag: tags
@@ -44,3 +45,5 @@ menu:
       weight: 1
       identifier: about
       url: /about/
+staticDir:
+- static

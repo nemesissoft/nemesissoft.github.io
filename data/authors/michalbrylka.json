@@ -1,0 +1,13 @@
+{
+    "name": "Michał Bryłka",
+    "bio": "Managing software developer, tech lead. Interested in systems design and normalization with performance as his priority. Experienced in smart client applications development, compiler writing, optimization, algorithmics.\n\n Clean code advocate, performance enthusiast, .Net freak ",
+    "avatar": "/media/authors/MichalBrylka.jpg",
+    "image": "/media/authors/MichalBrylka.jpg",
+    "weight": 1,
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/michalbrylka/",
+        "twitter": "michal_brylka",
+        "github": "https://github.com/MichalBrylka",
+        "website": "https://github.com/nemesissoft"
+    }
+}
