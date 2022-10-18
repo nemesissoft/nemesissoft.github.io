@@ -1,9 +1,9 @@
 <!doctype html><html lang=pl><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>Nemesis blog</title><meta property="og:title" content="Nemesis blog"><meta name=twitter:title content="Nemesis blog"><meta name=author content="Michał Bryłka"><meta property="og:site_name" content="Nemesis blog"><meta property="og:url" content="https://nemesissoft.github.io/"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=generator content="Hugo 0.104.3"><link href=/index.xml rel=alternate type=application/rss+xml title="Nemesis blog"><link href=/index.xml rel=feed type=application/rss+xml title="Nemesis blog"><link rel=stylesheet href=/css/style.css media=all><link rel=stylesheet href=/css/syntax.css media=all><link rel=stylesheet href=/css/custom.css media=all><script src=/js/script.js></script>
 <script src=/js/custom.js></script>
-<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/>Nemesis blog</a></h1><ul class=site-navi-items><li class=site-navi-item-categories><a href=/categories/ title=Categories>Categories</a></li><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list home-list"><article class=article><a href=/posts/using-records-in-older-frameworks/ class=article-titles><h2 class=article-title>Using Records in legacy .NET Frameworks</h2></a><ul class=article-meta><li class=article-meta-date><time>June 11, 2020</time></li><li class=article-meta-tags><a href=/tags/csharp/><i class="fas fa-tag"></i>
-CSharp
+<script defer src=/js/fontawesome.js></script></head><body><header class=site-header><nav class=site-navi><h1 class=site-title><a href=/>Nemesis blog</a></h1><ul class=site-navi-items><li class=site-navi-item-categories><a href=/categories/ title=Categories>Categories</a></li><li class=site-navi-item-tags><a href=/tags/ title=Tags>Tags</a></li><li class=site-navi-item-authors><a href=/authors/ title=Authors>Authors</a></li><li class=site-navi-item-about><a href=/about/ title=About>About</a></li></ul></nav></header><hr class=site-header-bottom><div class=main role=main><section class="list home-list"><article class=article><a href=/posts/using-records-in-older-frameworks/ class=article-titles><h2 class=article-title>Using Records in legacy .NET Frameworks</h2></a><ul class=article-meta><li class=article-meta-date><time>June 11, 2020</time></li><li class=article-meta-tags><a href=/tags/csharp/><i class="fas fa-tag"></i>
+csharp
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/records/><i class="fas fa-tag"></i>
-Records
+records
 </a>&nbsp;</li><li class=article-meta-tags><a href=/tags/legacy/><i class="fas fa-tag"></i>
 legacy
 </a>&nbsp;</li></ul><div class=article-content><p>Recenly we&rsquo;ve been seeing an increased activities on various blogs due to upcoming .NET 5 release date and one of it&rsquo;s hottest feature - C# 9.0 records.
@@ -29,11 +29,77 @@ A lot was written about this feature, starting with <a href=https://devblogs.mic
 </span></span><span style=display:flex><span>{
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>bool</span> IsInitOnly(<span style=color:#66d9ef>this</span> PropertyInfo property) =&gt;
 </span></span><span style=display:flex><span>        property.CanWrite &amp;&amp; property.SetMethod <span style=color:#66d9ef>is</span> <span style=color:#66d9ef>var</span> setter
-</span></span><span style=display:flex><span>            &amp;&amp; setter.ReturnParameter.GetRequiredCustomModifiers() <span style=color:#66d9ef>is</span> <span style=color:#66d9ef>var</span> reqMods &amp;&amp; reqMods.Length &gt; <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>            &amp;&amp; setter.ReturnParameter.GetRequiredCustomModifiers() <span style=color:#66d9ef>is</span> <span style=color:#66d9ef>var</span> reqMods 
+</span></span><span style=display:flex><span>            &amp;&amp; reqMods.Length &gt; <span style=color:#ae81ff>0</span>
 </span></span><span style=display:flex><span>            &amp;&amp; Array.IndexOf(reqMods, <span style=color:#66d9ef>typeof</span>(System.Runtime.CompilerServices.IsExternalInit)) &gt; -<span style=color:#ae81ff>1</span>;
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><h2 id=consuming-records-in-older-frameworks>Consuming records in older frameworks</h2><p>Fortunatelly, records are not any special types - they are, per se, not specially recognized by CLI/CLR. They are just spcially designed classes with:</p><ul><li>init only properties (default behaviour for positional records)</li><li>free structural equality, IEquatable&lt;> implementation, equality operators</li><li>positional deconstruction</li><li>printing/formatting</li></ul><p>Due to this phenomenon, consuming records is quite straightforward - you are using them as normal classes. If you&rsquo;d like to use <a href=https://devblogs.microsoft.com/dotnet/welcome-to-c-9-0/#with-expressions><strong>with</strong></a> keyword then you need to use C# 9.0+ for instance by specifying that in *.csproj file:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=display:flex><span><span style=color:#f92672>&lt;PropertyGroup&gt;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;LangVersion&gt;</span>9.0<span style=color:#f92672>&lt;/LangVersion&gt;</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>&lt;/PropertyGroup&gt;</span>
-</span></span></code></pre></div><h2 id=sources>Sources</h2><ul><li><a href=https://gist.github.com/MichalBrylka/417672620d1305de4a6db68698302544>Records producer/consumer</a></li></ul></div><div class=article-readmore><a href=/posts/using-records-in-older-frameworks/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2019-2022</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-TFL0Z5DXWF"></script>
+</span></span></code></pre></div><h2 id=sources>Sources</h2><ul><li><a href=https://gist.github.com/MichalBrylka/417672620d1305de4a6db68698302544>Records producer/consumer</a></li></ul></div><div class=article-readmore><a href=/posts/using-records-in-older-frameworks/>Read more...</a></div><div class=article-floatclear></div></article><article class=article><a href=/posts/setting-up-a-personal-github-blog-with-wyam/ class=article-titles><h2 class=article-title>Setting up a Personal or Organization Blog on GitHub Pages with Wyam</h2></a><ul class=article-meta><li class=article-meta-date><time>October 2, 2019</time></li><li class=article-meta-tags><a href=/tags/wyam/><i class="fas fa-tag"></i>
+Wyam
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/github-pages/><i class="fas fa-tag"></i>
+GitHub Pages
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/blog/><i class="fas fa-tag"></i>
+Blog
+</a>&nbsp;</li><li class=article-meta-tags><a href=/tags/appveyor/><i class="fas fa-tag"></i>
+AppVeyor
+</a>&nbsp;</li></ul><div class=article-content><p>I&rsquo;ve been trying to setup a static blog for <a href=https://github.com/nemesissoft>Nemesis</a> organization.
+There are many examples how to do it for project pages including <a href=https://wyam.io/docs/deployment/appveyor>this doc from Wyam author, Dave Glick</a>, unfortunately according to <a href=https://help.github.com/en/articles/configuring-a-publishing-source-for-your-github-pages-site>this GitHub doc</a> User and Organization pages are diffirent and can only be published from master branch top directory. There is no easy way to cram both sources and static site generated by Wyam into repository root directory.</p><p>Orphaned git branches to the rescue!</p><p><a href=https://git-scm.com/docs/git-checkout/1.7.3.1#git-checkout---orphan>Orphaned git branch</a> is esentially a branch that exists in the same repostory but has nothing in common with it&rsquo;s master branch. Through orphaned branches, git allows multiple parallel unrelated histories.</p><p>So I decided to use <code>master</code> branch - the only legit source for User or Organization github page - as deployment target, and <code>sources</code> branch as orphaned branch with blog sources.</p><p>To create parallel history I did:</p><pre tabindex=0><code>git checkout --orphan sources
+git rm -rf .        #to remove all files
+rm &#39;.gitignore&#39;
+echo &#34;# nemesissoft.github.io&#34; &gt; README.md
+git add README.md
+git commit -a -m &#34;Initial Commit&#34;
+git push origin sources
+</code></pre><p>Then you need to create the blog sources</p><pre tabindex=0><code>dotnet tool install -g Wyam.Tool
+wyam new -r Blog            #create new blog scaffold
+wyam -r Blog -t CleanBlog   #build using specific theme
+</code></pre><p>Run it within a test server and let it watch and auto reload on source file changes:</p><pre tabindex=0><code>wyam  --recipe Blog --theme CleanBlog --watch --preview
+
+Preview server listening at http://localhost:5080 ...
+</code></pre><p>All you need then is a build process that will run Wyam and deploy your blog from <code>sources</code> branch and commit output to <code>master</code> branch to allow GitGub pages to host it:
+Add appveyor.yml file with content:</p><pre tabindex=0><code>branches:
+  only:
+    - sources
+    
+environment:
+  access_token:
+    # EDIT the encrypted version of your GitHub access token
+    secure: iIghceLJ...
+
+install:
+  - git submodule update --init --recursive
+  - mkdir ..\Wyam
+  - mkdir ..\output
+  # Fetch the latest version of Wyam 
+  - &#34;curl -s https://raw.githubusercontent.com/Wyamio/Wyam/master/RELEASE -o ..\\Wyam\\wyamversion.txt&#34;
+  - set /P WYAMVERSION=&lt; ..\Wyam\wyamversion.txt
+  - echo %WYAMVERSION%
+  # Get and unzip the latest version of Wyam
+  - ps: Start-FileDownload &#34;https://github.com/Wyamio/Wyam/releases/download/$env:WYAMVERSION/Wyam-$env:WYAMVERSION.zip&#34; -FileName &#34;..\Wyam\Wyam.zip&#34;
+  - 7z x ..\Wyam\Wyam.zip -o..\Wyam -r
+
+build_script:
+  - dotnet ..\Wyam\Wyam.dll --output ..\output
+
+on_success:
+  # Switch branches to master, clean the folder, copy everything in from the Wyam output, and commit/push
+  # See http://www.appveyor.com/docs/how-to/git-push for more info
+  - git config --global credential.helper store
+  # EDIT your Git email and name
+  - git config --global user.email $env:op_build_user_email
+  - git config --global user.name $env:op_build_user
+  - ps: Add-Content &#34;$env:USERPROFILE\.git-credentials&#34; &#34;https://$($env:access_token):x-oauth-basic@github.com`n&#34;
+  - git checkout master
+  - git rm -rf .
+  - xcopy ..\output . /E
+  # EDIT your domain name or remove if not using a custom domain
+  #- echo wyam.io &gt; CNAME
+  # EDIT the origin of your repository - have to reset it here because AppVeyor pulls from SSH, but GitHub won&#39;t accept SSH pushes
+  - git remote set-url origin https://github.com/nemesissoft/nemesissoft.github.io.git
+  - git add -A
+  - git commit -a -m &#34;Commit from AppVeyor&#34;
+  - git push
+</code></pre><p>Create your build pipeline on <a href=https://AppVeyor.com>AppVeyor.com</a> for free and watch your blog appear on <a href=http://nemesissoft.github.io>{user or organization name}.github.io</a>.</p></div><div class=article-readmore><a href=/posts/setting-up-a-personal-github-blog-with-wyam/>Read more...</a></div><div class=article-floatclear></div></article></section></div><div class=site-footer><div class=copyright>&copy; Copyright 2019-2022 Michał Bryłka and Leszek Kowalski</div><ul class=site-footer-items><li class=site-footer-item-rsslink><a href=/index.xml type=application/rss+xml target=_blank title=RSS><i class="fas fa-rss"></i></a></li><li class=site-footer-item-about><a href=/about/ title=About>About</a></li></ul><div class=powerdby>Powered by <a href=https://gohugo.io/>Hugo</a> and <a href=https://github.com/taikii/whiteplain>Whiteplain</a></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-TFL0Z5DXWF"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TFL0Z5DXWF",{anonymize_ip:!1})}</script></body></html>
